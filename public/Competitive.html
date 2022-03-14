@@ -1,0 +1,360 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Assignment 03 Attempt 2: Competitive Play</title> 
+        <meta charset="utf-8" /> 
+        <link rel="stylesheet" href="css/style.css"/> 
+    </head> 
+    <body>
+            
+        <!--start button ensures that players 1 and 2 are in-->  
+        <button id="start" style = "background-color:rgb(255,255,255); color:rgb(0,0,0)"> START GAME </button> 
+        
+        <!--Initiallizes the countdown timer.-->
+        <br>
+        <p id="countdown">TIMER</p>
+        <br>   
+
+        <!-- our buttons for our game 
+        Please ignore the terrible coding, I know its not efficient, I'm just aiming for functioning --> 
+        
+        <!--PLAYER 1 on the LEFT--> 
+        <div class = "row"> 
+            <div id = "player1" class = "column"> 
+                <!--Contains the score for player 1-->
+                <p id="player1_points"> SCORE: 0</p> 
+                <!--Contains the buttons for player 1-->
+                <br>
+
+                <button id="1-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="1-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="1-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="1-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="1-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="1-6" class = "pink button player1" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="2-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="2-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="2-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="2-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="2-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="2-6" class = "pink button player1" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="3-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="3-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="3-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="3-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="3-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="3-6" class = "pink button player1" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="4-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="4-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="4-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="4-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="4-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="4-6" class = "pink button player1"style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="5-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="5-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="5-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="5-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="5-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="5-6" class = "pink button player1"style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="6-1" class = "red button player1" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="6-2" class = "blue button player1" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="6-3" class = "green button player1" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="6-4" class = "yellow button player1" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="6-5" class = "purple button player1" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="6-6" class = "pink button player1" style="background-color:rgb(255,192,203)"> - </button> 
+            </div> 
+            <div id = "player2" class = "column"> 
+                <!--Contains the score for player 2-->
+                <p id="player2_points"> SCORE: 0</p> 
+                <br>
+                
+                <!--Contains the buttons for player 1-->
+                <button id="1-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="1-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="1-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="1-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="1-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="1-6" class = "pink button player2" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="2-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="2-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="2-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="2-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="2-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="2-6" class = "pink button player2" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="3-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="3-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="3-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="3-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="3-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="3-6" class = "pink button player2" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="4-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="4-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="4-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="4-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="4-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="4-6" class = "pink button player2"style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="5-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="5-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="5-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="5-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="5-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="5-6" class = "pink button player2"style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+        
+                <button id="6-1" class = "red button player2" style="background-color:rgb(255, 0, 0)"> - </button> 
+                <button id="6-2" class = "blue button player2" style="background-color:rgb(0, 0, 255)"> - </button> 
+                <button id="6-3" class = "green button player2" style="background-color:rgb(0, 255, 0)"> - </button> 
+                <button id="6-4" class = "yellow button player2" style="background-color:rgb(255,255,0)"> - </button> 
+                <button id="6-5" class = "purple button player2" style="background-color:rgb(128,0,128)"> - </button> 
+                <button id="6-6" class = "pink button player2" style="background-color:rgb(255,192,203)"> - </button> 
+                <br>
+            </div> 
+        </div> 
+         
+        <!--Beginning socket.io activity-->
+        <script src="/socket.io/socket.io.js"></script> 
+        <script> 
+            //initializing socket
+            let socket = io(); 
+        
+            //On a connection, listen for the button click.
+            socket.on('connect', (userData) => { 
+                console.log('I exist!'); 
+                document.getElementById("start").addEventListener('click', function() { 
+                socket.emit("startGame");
+                    console.log(userData); 
+                });
+                //Timer
+                //Display game over when the time runs out. 
+                socket.on('timer', function (data) { 
+                    let time = data.countdown;  
+                    const countdownEl = document.getElementById('countdown');   
+                    let minutes = Math.floor(time/60);  
+                    let seconds = time % 60;  
+                    seconds = seconds <10 ? '0' + seconds : seconds;  
+                    countdownEl.innerHTML = (minutes + ':' + seconds); 
+                    if (time< 0){  
+                        countdownEl.innerHTML = 'GAME OVER';  
+                    }  
+                });
+                //if player 1 scores, add to their html. 
+                socket.on('player1_score_change', function (data) { 
+                    document.getElementById("player1_points").innerHTML = 'SCORE: ' + data.player1Score; 
+                }); 
+                //if player 2 scores, add to their html.
+                socket.on('player2_score_change', function (data) { 
+                    document.getElementById("player2_points").innerHTML = 'SCORE: ' + data.player2Score; 
+                }); 
+        
+                //creating some placeholder variables.
+                var player1option1 = ["", "", ""]; 
+                var player1option2 = ["", "", ""]; 
+                var player1option3 = ["", "", ""]; 
+                var player2option1 = ["", "", ""]; 
+                var player2option2 = ["", "", ""]; 
+                var player2option3 = ["", "", ""];
+
+                //BEHOLD MY VERY, VERY TERRIBLE MATCHING SYSTEM. I BEG THAT YOU IGNORE IT. 
+                
+                //OKAY A WEIRD BUG, I'M PRAYING I SOLVE IT BEFORE HANDING IT IN BUT WHO KNOWS
+                //the first console.log works fine. the second works fine. but the minute the 
+                //event listener is added on line 185, the system only wants to read button 12. I don't know why.
+                //this also functions fine for the team play, so idk man.
+
+                //First, obtain all of the buttons under player1 -> buttons.
+                var buttonsPlayer1 = document.getElementById("player1").getElementsByClassName("button"); 
+                console.log(buttonsPlayer1);
+                //next, loop through all the buttons
+                for (var i = 0; i < buttonsPlayer1.length; i++ ) { 
+                    console.log(buttonsPlayer1[i]);
+                    //add event listener (BUG SEEMS TO START HERE)
+                    (buttonsPlayer1[i]).addEventListener('click', function() { 
+                        console.log("button " + i + " clicked");
+                        //store the current button
+                        var option = [this.id, this.parentNode.id, this.className]; 
+                        //if option1 is blank, it means this is the first click. 
+                        if (player1option1[0] == '') 
+                        { 
+                            player1option1 = option; 
+                            return; 
+                        } 
+                        //if option2 is blank, but option1 isn't, it means this is the second click. 
+                        if ((player1option1[0] != '') && (player1option2[0] == '')) 
+                        { 
+                            player1option2 = option; 
+                            return; 
+                        } 
+                        if ((player1option1[0] != '') && (player1option2[0] != '') && (player1option3[0] == '')) 
+                        { 
+                            player1option3 = option; 
+                            //once all the slots are filled, check for a match 
+                            //first, ensure the same button was not hit twice 
+                            if((player1option1[0,1] == player1option2[0,1])||(player1option2[0,1] == player1option3[0,1])||(player1option3[0,1] == player1option1[0,1])) 
+                            { 
+                                //No Match. Reset. 
+                                player1option1 = ["", "", ""]; 
+                                player1option2 = ["", "", ""]; 
+                                player1option3 = ["", "", ""]; 
+                                return; 
+                            } 
+                            else{ 
+                                //next, ensure the same colour class was chosen each time. 
+                                if ((player1option1[2] == player1option2[2]) &&(player1option1[2] ==  player1option3[2])) 
+                                { 
+                                    //next, ensure that they're EITHER all in the same row, or all in the same column 
+                                    if ((player1option1[1] == player1option2[1]) &&(player1option1[1] == player1option3[1])||(player1option1[0] == player1option2[0]) &&(player1option1[0] ==  player1option3[0])) 
+                                    { 
+                                        //MATCH FOUND 
+                                        console.log("MATCH PLAYER1"); 
+                                        //Reset. 
+                                        player1option1 = ['', '', '']; 
+                                        player1option2 = ['', '', '']; 
+                                        player1option3 = ['', '', '']; 
+                                        //add to score. 
+                                        socket.emit('player1Up'); 
+                                        return; 
+                                    } 
+                                } 
+                                else{ 
+                                    //No Match. 
+                                    //Reset. 
+                                    player1option1 = ["", "", ""]; 
+                                    player1option2 = ["", "", ""]; 
+                                    player1option3 = ["", "", ""]; 
+                                    return; 
+                                } 
+                            }    
+                        }    
+                    }); 
+                } 
+
+                //same stuff, different player
+                var buttonsPlayer2 = document.getElementById("player2").getElementsByClassName("button");
+                for (var i = 0; i < buttonsPlayer2.length; i++ ) {
+                    console.log(buttonsPlayer2[i]);
+                    (buttonsPlayer2[i]).addEventListener('click', function() {
+                        console.log("button " + i + " clicked");  
+                        var option = [this.id, this.parentNode.id, this.className]; 
+                        
+                        //if option1 is blank, it means this is the first click. 
+                        if (player2option1[0] == '') 
+                        { 
+                            player2option1 = option; 
+                            return; 
+                        } 
+                        //if option2 is blank, but option1 isn't, it means this is the second click. 
+                        if ((player2option1[0] != '') && (player2option2[0] == '')) 
+                        { 
+                            player2option2 = option; 
+                            return; 
+                        } 
+                        if ((player2option1[0] != '') && (player2option2[0] != '') && (player2option3[0] == '')) 
+                        { 
+                            player2option3 = option; 
+                            //once all the slots are filled, check for a match 
+                            //first, ensure the same button was not hit twice 
+                            if((player2option1[0,1] == player2option2[0,1])||(player2option2[0,1] == player2option3[0,1])||(player2option3[0,1] == player2option1[0,1])) 
+                            { 
+                                //No Match. Reset. 
+                                player2option1 = ["", "", ""]; 
+                                player2option2 = ["", "", ""]; 
+                                player2option3 = ["", "", ""]; 
+                                return; 
+                            } 
+                            else{ 
+                                //next, ensure the same colour class was chosen each time. 
+                                if ((player2option1[2] == player2option2[2]) &&(player2option1[2] ==  player2option3[2])) 
+                                { 
+                                    //next, ensure that they're EITHER all in the same row, or all in the same column 
+                                    if ((player2option1[1] == player2option2[1]) &&(player2option1[1] == player2option3[1])||(player2option1[0] == player2option2[0]) &&(player2option1[0] ==  player2option3[0])) 
+                                    { 
+                                        //MATCH FOUND 
+                                        console.log("MATCH PLAYER  2"); 
+                                        //Reset. 
+                                        player2option1 = ['', '', '']; 
+                                        player2option2 = ['', '', '']; 
+                                        player2option3 = ['', '', '']; 
+                                        //add to score. 
+                                        socket.emit('player2Up'); 
+                                        return; 
+                                    } 
+                                } 
+                                else{ 
+                                    //No Match. 
+                                    //Reset. 
+                                    player2option1 = ["", "", ""]; 
+                                    player2option2 = ["", "", ""]; 
+                                    player2option3 = ["", "", ""]; 
+                                    return; 
+                                } 
+                            }    
+                        }  
+                    }); 
+                } 
+
+                //At this point, these have been bloody fantastic for testing things. 
+                var reds = document.getElementsByClassName("red"); 
+                    for (var i = 0; i < reds.length; i++ ) { 
+                        reds[i].addEventListener('click', function() { 
+                            socket.emit('red'); 
+                        }); 
+                    } 
+                var blues = document.getElementsByClassName("blue"); 
+                    for (var i = 0; i < blues.length; i++ ) { 
+                        blues[i].addEventListener('click', function() { 
+                            socket.emit('blue'); 
+                        }); 
+                    } 
+                var greens = document.getElementsByClassName("green"); 
+                    for (var i = 0; i < greens.length; i++ ) { 
+                        greens[i].addEventListener('click', function() { 
+                            socket.emit('green'); 
+                        }); 
+                    } 
+                var yellows = document.getElementsByClassName("yellow"); 
+                    for (var i = 0; i < yellows.length; i++ ) { 
+                        yellows[i].addEventListener('click', function() { 
+                            socket.emit('yellow'); 
+                        }); 
+                    } 
+                var purples = document.getElementsByClassName("purple"); 
+                    for (var i = 0; i < purples.length; i++ ) { 
+                        purples[i].addEventListener('click', function() { 
+                            socket.emit('purple'); 
+                        }); 
+                    } 
+                var pinks = document.getElementsByClassName("pink"); 
+                    for (var i = 0; i < pinks.length; i++ ) { 
+                        pinks[i].addEventListener('click', function() { 
+                            socket.emit('pink'); 
+                        }); 
+                    }
+                    
+                //the original colour change funtion
+                socket.on('color_change', (data) => { 
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')'; 
+                    console.log('color_change socket event: ' + colorStr); 
+                    document.body.style.backgroundColor = colorStr; 
+                }); 
+            }); 
+        </script> 
+    </body> 
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Assignment 03 Attempt 2: Team Play</title> 
+        <meta charset="utf-8" /> 
+        <link rel="stylesheet" href="css/style.css"/> 
+    </head> 
+    <body> 
+        <!--it took me. an hour and a half. to properly sync this clock.  
+        all it took was a start button. 
+        yes. I am crying.--> 
+        <button id="start" style = "background-color:rgb(255,255,255); color:rgb(0,0,0)"> START GAME </button> 
+        <br>
+
+        <!--The game countdown-->
+        <p id="countdown"></p>   
+        
+        <!--The total score-->
+        <p id="points"> SCORE: 0</p>   
+ 
+        <!-- our buttons for our game 
+        Please ignore the terrible coding, I know its not efficient, I'm just aiming for functioning --> 
+        <div id = "1"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button" style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+ 
+        <div id = "2"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button" style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+ 
+        <div id = "3"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button" style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+ 
+        <div id = "4"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button"style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+        
+        <div id = "5"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button"style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+ 
+        <div id = "6"> 
+            <button id="1" class = "red button" style="background-color:rgb(255, 0, 0)"> - </button> 
+            <button id="2" class = "blue button" style="background-color:rgb(0, 0, 255)"> - </button> 
+            <button id="3" class = "green button" style="background-color:rgb(0, 255, 0)"> - </button> 
+            <button id="4" class = "yellow button" style="background-color:rgb(255,255,0)"> - </button> 
+            <button id="5" class = "purple button" style="background-color:rgb(128,0,128)"> - </button> 
+            <button id="6" class = "pink button" style="background-color:rgb(255,192,203)"> - </button> 
+        </div> 
+        
+        <!-- button intended to reset the board. I cannot seem to get the button  randomizer functioning-->
+        <button id="reset" style = "background-color:rgb(255,255,255); color:rgb(0,0,0)"> RESET BOARD </button> 
+        <script src="/socket.io/socket.io.js"></script> 
+        <script> 
+            let socket = io(); 
+            socket.on('connect', (userData) => { 
+                console.log('I exist!'); 
+                document.getElementById("start").addEventListener('click', function() { 
+                    socket.emit("startGame"); 
+                    socket.emit("setTurn");
+                }); 
+                socket.on('timer', function (data) { 
+                    let time = data.countdown;  
+                    const countdownEl = document.getElementById('countdown');   
+                    let minutes = Math.floor(time/60);  
+                    let seconds = time % 60;  
+                    seconds = seconds <10 ? '0' + seconds : seconds;  
+                    countdownEl.innerHTML = (minutes + ':' + seconds); 
+                    if (time < 0){  
+                    //Don't progress time  
+                    //Another instance of socketing this out 
+                        countdownEl.innerHTML = 'GAME OVER';  
+                    }  
+                }); 
+                socket.on('score_change', function (data) { 
+                    console.log("current score: " + data.teamScore);
+                    document.getElementById("points").innerHTML = 'SCORE: ' + data.teamScore; 
+                }); 
+                //placeholder options
+                var option1 = ["", "", ""]; 
+                var option2 = ["", "", ""]; 
+                var option3 = ["", "", ""]; 
+                
+                var buttons = document.getElementsByClassName("button"); 
+                for (var i = 0; i < buttons.length; i++ ) { 
+                    //COMMENTED THIS WHOLE BIT OUT BECAUSE IT'S NOT FUNCTIONING AS INTENDED.
+                    //it randomizes some buttons, but not all.
+
+                    // document.getElementById("reset").addEventListener('click', function() { 
+                    //     var randColor = Math.floor(Math.random() * 6); 
+                    //     console.log(buttons[i].className); 
+                    //     if (randColor == 0) 
+                    //     { 
+                    //         buttons[i].className = "red"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(255, 0, 0)'; 
+                    //     } 
+                    //     else if (randColor == 1) 
+                    //     { 
+                    //         buttons[i].className = "blue"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(0, 0, 255)'; 
+                    //     } 
+                    //     else if (randColor == 2) 
+                    //     { 
+                    //         buttons[i].className = "green"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(0, 255, 0)'; 
+                    //     } 
+                    //     else if (randColor == 3) 
+                    //     { 
+                    //         buttons[i].className="yellow"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(255, 255, 0)'; 
+                    //     } 
+                    //     else if (randColor == 4) 
+                    //     { 
+                    //         buttons[i].className = "purple"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(128, 0, 128)'; 
+                    //     } 
+                    //     else if (randColor == 5) 
+                    //     { 
+                    //         buttons[i].className = "pink"; 
+                    //         buttons[i].style.backgroundColor = 'rgb(255,192,203)'; 
+                    //     } 
+                    //     console.log(buttons[i].className); 
+                    //     //     //console.log("Changed to: " + buttons[i].className); 
+                    //     //console.log('reset button clicked'); 
+                    //     //socket.emit('reset'); 
+                    // });
+                    
+                    //BEHOLD MY VERY, VERY TERRIBLE MATCHING SYSTEM. I BEG THAT YOU IGNORE IT. 
+                    //it does work though, so yay.
+                    buttons[i].addEventListener('click', function() { 
+                        var option = [this.id, this.parentNode.id, this.className]; 
+                        
+                        //if option1 is blank, it means this is the first click. 
+                        if (option1[0] == '') 
+                        { 
+                            option1 = option; 
+                            return; 
+                        } 
+                        //if option2 is blank, but option1 isn't, it means this is the second click. 
+                        if ((option1[0] != '') && (option2[0] == '')) 
+                        { 
+                            option2 = option; 
+                            return; 
+                        } 
+                        if ((option1[0] != '') && (option2[0] != '') && (option3[0] == '')) 
+                        { 
+                            option3 = option; 
+                            //once all the slots are filled, check for a match 
+                            //first, ensure the same button was not hit twice 
+                            if((option1[0,1] == option2[0,1])||(option2[0,1] == option3[0,1])||(option3[0,1] == option1[0,1])) 
+                            { 
+                                //No Match. Reset. 
+                                option1 = ["", "", ""]; 
+                                option2 = ["", "", ""]; 
+                                option3 = ["", "", ""]; 
+                                socket.emit("setTurn");
+                                return; 
+                            } 
+                            else{ 
+                                //next, ensure the same colour class was chosen each time. 
+                                if ((option1[2] == option2[2]) &&(option1[2] ==  option3[2])) 
+                                { 
+                                    //next, ensure that they're EITHER all in the same row, or all in the same column 
+                                    if ((option1[1] == option2[1]) &&(option1[1] == option3[1])||(option1[0] == option2[0]) &&(option1[0] ==  option3[0])) 
+                                    { 
+                                        //MATCH FOUND 
+                                        console.log("MATCH"); 
+                                        //Reset. 
+                                        option1 = ['', '', '']; 
+                                        option2 = ['', '', '']; 
+                                        option3 = ['', '', '']; 
+                                        //add to score. 
+                                        socket.emit('scoreUp'); 
+                                        socket.emit("setTurn");
+                                        return; 
+                                    } 
+                                } 
+                                else{ 
+                                    //No Match. 
+                                    //Reset. 
+                                    option1 = ["", "", ""]; 
+                                    option2 = ["", "", ""]; 
+                                    option3 = ["", "", ""]; 
+                                    socket.emit("setTurn");
+                                    return; 
+                                } 
+                            }    
+                        }   
+                    }); 
+                } 
+               
+                socket.on('color_change', (data) => { 
+                    let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')'; 
+                    console.log('color_change socket event: ' + colorStr); 
+                    document.body.style.backgroundColor = colorStr; 
+                }); 
+
+                //The reset is REALLY not working as intended.
+                socket.on('reset_board',(data)=> { 
+                    //Then randomize those chosen buttons 
+                    //red = 0, blue = 1, green = 2, yellow = 3, purple = 4, pink = 5. 
+                    console.log('reset event STARTING'); 
+                }); 
+            }); 
+        </script> 
+    </body> 
+</html>
